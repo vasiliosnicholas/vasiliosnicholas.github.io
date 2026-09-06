@@ -124,6 +124,12 @@ const backgrounds = await loadBackgrounds();
 const currentBackgroundIndex = localStorage.getItem(backgroundKey);
 let bIndex = Number.parseInt(currentBackgroundIndex ?? 0);
 
+const loadImg = async (path) => {
+  const img = new Image();
+  img.src = path;
+  await img.decode();
+};
+
 let subsequent = false;
 let handler = undefined;
 async function backgroundHandler(duration = animationDuration) {
@@ -145,8 +151,8 @@ async function backgroundHandler(duration = animationDuration) {
         ));
     }
     localStorage.setItem(backgroundKey, bIndex);
-    //attempt to cache image in browser prior to fade in
-    await fetch(backgrounds[bIndex].path);
+    //load and cache image in browser prior to fade in
+    await loadImg(backgrounds[bIndex].path);
     void handleAnimation(
       fadeKeyFrames,
       document.body,
@@ -193,4 +199,4 @@ prevBackgroundButton.addEventListener("click", async () => {
 backgroundHandler();
 
 if (!localStorage.getItem(backgroundKey))
-  for (const background of backgrounds) await fetch(background.path);
+  for (const background of backgrounds) loadImg(background.path);
