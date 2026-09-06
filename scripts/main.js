@@ -145,6 +145,8 @@ async function backgroundHandler(duration = animationDuration) {
         ));
     }
     localStorage.setItem(backgroundKey, bIndex);
+    //attempt to cache image in browser prior to fade in
+    await fetch(backgrounds[bIndex].path);
     void handleAnimation(
       fadeKeyFrames,
       document.body,
@@ -168,8 +170,6 @@ displayButton.addEventListener("click", displayToggle);
 
 let backgroundChangeLocked = false; //throttle
 
-backgroundHandler();
-
 nextBackgroundButton.addEventListener("click", async () => {
   if (!backgroundChangeLocked) {
     backgroundChangeLocked = true;
@@ -190,4 +190,7 @@ prevBackgroundButton.addEventListener("click", async () => {
   }
 });
 
-imgDescription;
+backgroundHandler();
+
+if (!localStorage.getItem(backgroundKey))
+  for (const background of backgrounds) await fetch(background.path);
