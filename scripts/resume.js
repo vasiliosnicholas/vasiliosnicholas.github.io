@@ -192,9 +192,9 @@ async function init() {
     return;
   }
 
-  // Sort chronologically then render
-  const sorted = [...entries].sort((a, b) =>
-    a.sortDate.localeCompare(b.sortDate)
+  // Sort by most recent then render
+  const sorted = [...entries].sort(
+    (a, b) => -a.sortDate.localeCompare(b.sortDate)
   );
   sorted.forEach((entry) => track.appendChild(createCard(entry)));
 
