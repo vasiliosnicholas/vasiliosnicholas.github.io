@@ -6,7 +6,9 @@
     "location": "Baltimore, MD",
     "dateLabel": "08/2016 – 05/2020",
     "sortDate": "2016-08",
-    "details": ["Graduated with General Honors."]
+    "details": [
+      "Graduated with General Honors."
+    ]
   },
   {
     "category": "research",
@@ -28,7 +30,9 @@
     "location": "Baltimore, MD",
     "dateLabel": "09/2017 – 05/2020",
     "sortDate": "2017-09",
-    "details": ["Involved in multiple community service events."]
+    "details": [
+      "Involved in multiple community service events."
+    ]
   },
   {
     "category": "activities",
@@ -129,7 +133,7 @@
     "title": "Clinical Research Coordinator",
     "org": "The Institute for Advanced Reconstruction",
     "location": "Tinton Falls, NJ",
-    "dateLabel": "06/2022 – 06/2024",
+    "dateLabel": "06/2022 – 08/2023",
     "sortDate": "2022-06",
     "details": [
       "Maintained IRB compliance on active clinical studies.",
@@ -147,7 +151,9 @@
     "location": "Boston, MA",
     "dateLabel": "08/2025 – 12/2027",
     "sortDate": "2025-08",
-    "details": ["MSCS Align program at Khoury College of Computer Sciences."]
+    "details": [
+      "MSCS Align program at Khoury College of Computer Sciences."
+    ]
   },
   {
     "category": "work",
