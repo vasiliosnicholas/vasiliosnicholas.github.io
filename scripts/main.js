@@ -13,6 +13,8 @@ const imgDescription = document.querySelector(".img-description");
 const backgroundKey = "currentBackgroundIndex";
 const nextBackgroundButton = document.getElementById("background-next");
 const prevBackgroundButton = document.getElementById("background-previous");
+const anchors = document.querySelectorAll("a");
+
 const fadeKeyFrames = ({ reverse }) =>
   reverse ? [{ opacity: 1 }, { opacity: 0 }] : [{ opacity: 0 }, { opacity: 1 }];
 
@@ -195,6 +197,22 @@ prevBackgroundButton.addEventListener("click", async () => {
     backgroundChangeLocked = false;
   }
 });
+
+for (const anchor of anchors) {
+  if (!anchor.href.startsWith("#")) {
+    anchor.addEventListener("click", async (event) => {
+      event.preventDefault();
+      await handleAnimation(
+        fadeKeyFrames,
+        document.body,
+        { reverse: true },
+        changeOnDemandAnimationDuration
+      );
+      console.log(anchor.href);
+      window.location.href = anchor.href;
+    });
+  }
+}
 
 backgroundHandler();
 
