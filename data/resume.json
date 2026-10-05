@@ -189,10 +189,12 @@
     "dateLabel": "06/2026 – 12/2026",
     "sortDate": "2026-06",
     "details": [
-      "Writing a software package to parse pupillometry and related data.",
-      "Performing signal-processing analyses to filter artifacts from data.",
-      "Analyzing and plotting data, preparing output statistics.",
-      "Writing documentation and a user-friendly website for non-study staff."
+      "Developing an open-source Python package that detects and filters blink artifacts from raw pupillometry recordings, enabling collaborating clinical researchers to evaluate the kinematics of pupil diameter as a biomarker of circadian system health.",
+      "Implemented a blink-filtering algorithm and validated output against manually labeled data to confirm physiological signal is preserved.",
+      "Scaled the algorithm to clean 840+ study signals reducing total subsequent manual cleaning time to under 2 hours.",
+      "Evaluated linear and non-linear regression models using goodness-of-fit metrics to identify the optimal model for quantifying pupil kinematics.",
+      "Designed the API and documentation for clinical researchers, eliminating a critical, time-intensive data-cleaning bottleneck.",
+      "Developing a front-end app for researchers to clean and view analysis on their pupillometry data using the package in Svelte and TypeScript."
     ]
   }
 ]

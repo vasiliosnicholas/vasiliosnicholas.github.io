@@ -21,6 +21,8 @@ const track = document.querySelector("#timeline-track");
 const scrollContainer = document.querySelector("#timeline-scroll");
 const filterBar = document.querySelector("#filter-bar");
 
+let unlockHorizontalScroll = true;
+
 // --- Helpers ----------------------------------------------------------
 
 function createCard(entry) {
@@ -64,6 +66,11 @@ function wireExpandCollapse() {
     const card = e.target.closest(".timeline-card");
     if (!card) return;
     const expanded = card.classList.toggle("is-expanded");
+    card.addEventListener(
+      "mouseover",
+      () => (unlockHorizontalScroll = !expanded)
+    );
+    card.addEventListener("mouseout", () => (unlockHorizontalScroll = true));
     card.setAttribute("aria-expanded", String(expanded));
     card.querySelector(".card-toggle-hint").textContent = expanded
       ? "Click to collapse"
@@ -162,8 +169,9 @@ function scrollMax() {
 
 function wireWheelToHorizontal() {
   scrollContainer.addEventListener("wheel", (e) => {
-    // Only translate if the user is scrolling primarily vertically
+    // Only translate if the user is scrolling primarily vertically and not throttled
     if (
+      unlockHorizontalScroll &&
       Math.abs(e.deltaY) > Math.abs(e.deltaX) &&
       ((e.deltaY < 0 && Math.floor(scrollContainer.scrollLeft) > 0) ||
         (e.deltaY > 0 && Math.ceil(scrollContainer.scrollLeft) < scrollMax()))
