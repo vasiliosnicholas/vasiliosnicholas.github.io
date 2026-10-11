@@ -1,11 +1,7 @@
-const backgroundColorOne = "bg-white";
-const flashTime = 2000;
 const backgroundTime = 15000;
 const animationDuration = backgroundTime / 6;
 const changeOnDemandAnimationDuration = 500;
 const toggleContentDuration = 1000;
-const simpleFlashElements = document.querySelectorAll(".flash");
-const sequenceFlashElements = document.querySelectorAll(".flash-seq");
 const displayButton = document.querySelector("#display-toggle");
 const displayButtonContents = document.querySelector("#display-toggle > svg");
 const elementsToHide = document.querySelectorAll(".page-section:not(footer)");
@@ -53,10 +49,6 @@ async function handleAnimation(
   return animation.finished;
 }
 
-function flashElement(element, color) {
-  element.classList.toggle(color);
-}
-
 async function handleToggle(element, reverse) {
   if (!reverse) element.classList.toggle("d-none");
   await handleAnimation(
@@ -86,19 +78,6 @@ async function displayToggle() {
   }
 }
 
-let index = 0;
-let count = 0;
-
-async function flashInterval() {
-  flashElement(sequenceFlashElements[index], backgroundColorOne);
-  if (count == 1) {
-    index++;
-    index = index % sequenceFlashElements.length;
-  }
-  count++;
-  count = count % 2;
-}
-
 async function loadBackgrounds() {
   const data = await fetch("./images/backgrounds.json");
   return await data.json();
@@ -109,19 +88,6 @@ function changeBackground(image) {
   imgDescription.innerHTML = `<strong> Image Description:</strong> ${image.description || "No Image Description"}`;
 }
 
-//simple flash
-setInterval(() => {
-  for (const element of simpleFlashElements) {
-    flashElement(element, backgroundColorOne);
-  }
-}, flashTime);
-
-//sequential flash
-if (sequenceFlashElements.length > 0) {
-  setInterval(() => {
-    flashInterval();
-  }, flashTime);
-}
 const backgrounds = await loadBackgrounds();
 const currentBackgroundIndex = localStorage.getItem(backgroundKey);
 let bIndex = Number.parseInt(currentBackgroundIndex ?? 0);

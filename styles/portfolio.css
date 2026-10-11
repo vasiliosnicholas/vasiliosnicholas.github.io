@@ -1,0 +1,40 @@
+/* Portfolio page: glassy project cards matching the resume skill cards */
+
+.project-card {
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.project-card h2 {
+  text-shadow: black 0 3px 5px;
+}
+
+/* GitHub linguist language colors */
+.lang-dot {
+  display: inline-block;
+  width: 0.75em;
+  height: 0.75em;
+  margin-right: 0.4em;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.lang-javascript {
+  background-color: #f1e05a;
+}
+
+.lang-typescript {
+  background-color: #3178c6;
+}
+
+.lang-java {
+  background-color: #b07219;
+}
