@@ -164,21 +164,34 @@ prevBackgroundButton.addEventListener("click", async () => {
   }
 });
 
+let exitAnimation = undefined;
 for (const anchor of anchors) {
-  if (!anchor.href.startsWith("#")) {
+  if (!anchor.getAttribute("href")?.startsWith("#")) {
     anchor.addEventListener("click", async (event) => {
       event.preventDefault();
-      await handleAnimation(
+      exitAnimation = await handleAnimation(
         fadeKeyFrames,
         document.body,
         { reverse: true },
         changeOnDemandAnimationDuration
       );
-      console.log(anchor.href);
       window.location.href = anchor.href;
     });
   }
 }
+
+//pages restored from the back/forward cache keep the faded-out body
+window.addEventListener("pageshow", (event) => {
+  if (!event.persisted) return;
+  exitAnimation?.cancel();
+  exitAnimation = undefined;
+  void handleAnimation(
+    fadeKeyFrames,
+    document.body,
+    { reverse: false },
+    changeOnDemandAnimationDuration
+  );
+});
 
 backgroundHandler();
 
